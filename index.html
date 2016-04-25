@@ -32,7 +32,9 @@
 		}
 	}*/
 
-	var spongeBob = {
+	var characters = [{name: "Sponge Bob", healthPoints: 120, attackPower: 8, counterAttackPower: 10, src: "assets/images/spongeBob.jpg"}, {name: "Darth Vader", healthPoints: 100, attackPower: 10, counterAttackPower: 6}]
+
+	/*var spongeBob = {
 
 		healthPoints: 0,
 		attackPower: 0,
@@ -55,11 +57,45 @@
 	var tweety = {
 
 
-	}
+	}*/
 
 	$(document).ready(function(){
 
 		var numOfClicks = 0;
+		var newDiv;
+		var newPara;
+		var hpPara;
+		var charImg;
+
+		for(var i= 0; i < characters.length; i++){
+
+			newDiv = $("<div></div>");
+			newDiv.addClass("imgCharacters");
+			$('div#characters').append(newDiv);
+
+			newPara = $("<p></p>");
+			newPara.attr({"id": "charName",
+						  "class": "text-center"});
+			newDiv.append(newPara);
+			newPara.text(characters[i].name);
+
+			charImg = $("<img>");
+			charImg.attr({'src': characters[i].src,
+						  'alt': characters[i].name});
+			newDiv.append(charImg);
+
+
+
+			hpPara = $("<p></p>");
+			hpPara.addClass("hps text-center");
+			hpPara.text(characters[i].healthPoints);
+			newDiv.append(hpPara);
+
+		}
+
+		$('.hps').text(characters[0].healthPoints);
+
+
 
 		$('.imgCharacters').on('click', function(){
 
@@ -73,7 +109,7 @@
 							 'border': '2px solid green'});
 				$('#myCharacter').append($(this));
 				
-			} else if(numOfClicks == 2){
+			} else if(numOfClicks == 2 && $('div#battleField .imgCharacters').data('clicked', true)){
 
 				$('#battleField').append($(this));
 				$(this).css({'background-color': '#FFF',
@@ -101,21 +137,25 @@
 		<div class="imgCharacters">
 			<p id="charName" class="text-center">Sponge Bob</p>
 			<img class="blah" src="assets/images/spongeBob.jpg" alt="Sponge Bob" id="sbob">
+			<p class="hps"></p>
 		</div>
 
 		<div class="imgCharacters">
 			<p id="charName" class="text-center">Darth Vader</p>
 			<img src="assets/images/darth.jpg" id="darth" alt="Darth Vader">
+			<p class="hps"></p>
 		</div>
 
 		<div class="imgCharacters">
 			<p id="charName" class="text-center">Tigger</p>
 			<img src="assets/images/tigger.gif" id="tigger" alt="Tigger">
+			<p class="hps"></p>
 		</div>
 
 		<div class="imgCharacters">
 			<p id="charName" class="text-center">Tweety Bird</p>
 			<img src="assets/images/tweety.gif" id="tweety" alt="Tweety Bird">
+			<p class="hps"></p>
 		</div>
 
 	</div>
