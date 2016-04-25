@@ -65,21 +65,21 @@
 
 			numOfClicks++;
 
-			//if(numOfClicks == 1){
+			if(numOfClicks == 1){
 
 				$('#enemies').append($('.imgCharacters'));
 				$('.imgCharacters').css('background-color', '#FF0000');
-				$(this).css('background-color', '#FFF');
+				$(this).css({'background-color': '#FFF',
+							 'border': '2px solid green'});
 				$('#myCharacter').append($(this));
-		/*		
+				
 			} else if(numOfClicks == 2){
 
 				$('#battleField').append($(this));
-
+				$(this).css({'background-color': '#FFF',
+							 'border': '2px solid green'});
 
 			}
-*/
-
 
 		});
 
