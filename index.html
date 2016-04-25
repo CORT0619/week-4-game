@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>StarWars RPG Game</title>
+
+
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Russo+One' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+
+
+	<script type="text/javascript" src="assets/javascript/game.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+
+	<script>
+/*
+	var game = {
+		wins: 0,
+		losses: 0,
+
+		askQuestions: function(){
+
+			
+		},
+
+		driveAroundWorld: function(){
+
+		}
+	}*/
+
+	var spongeBob = {
+
+		healthPoints: 0,
+		attackPower: 0,
+		counterAttackPower: 0
+
+
+	}
+
+	var darthVader = {
+
+		counterAttackPower: 0
+
+	}
+
+	var tigger = {
+
+
+	}
+
+	var tweety = {
+
+
+	}
+
+	$(document).ready(function(){
+
+		var numOfClicks = 0;
+
+		$('.imgCharacters').on('click', function(){
+
+			numOfClicks++;
+
+			//if(numOfClicks == 1){
+
+				$('#enemies').append($('.imgCharacters'));
+				$('.imgCharacters').css('background-color', '#FF0000');
+				$(this).css('background-color', '#FFF');
+				$('#myCharacter').append($(this));
+		/*		
+			} else if(numOfClicks == 2){
+
+				$('#battleField').append($(this));
+
+
+			}
+*/
+
+
+		});
+
+	});
+
+
+
+
+
+	
+</script>
+</head>
+<body>
+
+
+<div class="container">
+	<h1 class="text-center">StarWars RPG Game</h1>
+	<div id="characters">
+		<div class="imgCharacters">
+			<p id="charName" class="text-center">Sponge Bob</p>
+			<img class="blah" src="assets/images/spongeBob.jpg" alt="Sponge Bob" id="sbob">
+		</div>
+
+		<div class="imgCharacters">
+			<p id="charName" class="text-center">Darth Vader</p>
+			<img src="assets/images/darth.jpg" id="darth" alt="Darth Vader">
+		</div>
+
+		<div class="imgCharacters">
+			<p id="charName" class="text-center">Tigger</p>
+			<img src="assets/images/tigger.gif" id="tigger" alt="Tigger">
+		</div>
+
+		<div class="imgCharacters">
+			<p id="charName" class="text-center">Tweety Bird</p>
+			<img src="assets/images/tweety.gif" id="tweety" alt="Tweety Bird">
+		</div>
+
+	</div>
+
+	<div id="myCharacter">
+	<p id="titles">Your Character</p>
+
+	</div>
+
+	<div id="enemies">
+	<p id="titles">Enemies Available To Attack</p>
+	</div>
+
+	<div id="battleField">
+	<p id="titles">Fight Section</p>
+	<button type="button" class="btn btn-default">Attack</button>
+	<p id="titles">Defender</p>
+	</div>
+</div>	
+</body>
+</html>

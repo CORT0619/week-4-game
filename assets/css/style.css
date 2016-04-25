@@ -1,0 +1,26 @@
+body {font-family: 'Courier';}
+
+h1 {font-family: 'Russo One', sans-serif;}
+
+#titles {font-size: 16pt;
+   		 display: block;
+  		 clear: both;
+ 		 font-weight: bold;}
+
+
+.imgCharacters {padding: 20px;
+				border: 1px solid #000;
+				width: 250px;
+				float: left;
+				margin-right: 10px;
+				background-color: #FFF;
+				margin-bottom: 10px;}
+
+.hiddenChars {display: none;}
+
+
+#charName {margin-top: 0;
+		   font-weight: bold;
+		   font-family: Tahoma, serif;}
+
+.backCol {background-color: '#ffff00';}		   				
