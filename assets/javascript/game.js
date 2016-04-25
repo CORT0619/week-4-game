@@ -1,44 +1,17 @@
-/*
+
 	var game = {
 		wins: 0,
 		losses: 0,
+		characters: [{name: "Sponge Bob", healthPoints: 120, attackPower: 8, counterAttackPower: 10, src: "assets/images/spongeBob.jpg"}, {name: "Darth Vader", healthPoints: 100, attackPower: 10, counterAttackPower: 6, src: "assets/images/darth.jpg"}, {name: "Tigger", healthPoints: 150, attackPower: 12, counterAttackPower: 5, src: "assets/images/tigger.gif"}, {name: "Tweety", healthPoints: 180, attackPower: 9, counterAttackPower: 9, src: "assets/images/tweety.gif"}],
 
-		askQuestions: function(){
-
+		attack: function(){
 			
-		},
-
-		driveAroundWorld: function(){
-
+			
 		}
-	}*/
-
-	var characters = [{name: "Sponge Bob", healthPoints: 120, attackPower: 8, counterAttackPower: 10, src: "assets/images/spongeBob.jpg"}, {name: "Darth Vader", healthPoints: 100, attackPower: 10, counterAttackPower: 6, src: "assets/images/darth.jpg"}, {name: "Tigger", healthPoints: 150, attackPower: 12, counterAttackPower: 5, src: "assets/images/tigger.gif"}, {name: "Tweety", healthPoints: 180, attackPower: 9, counterAttackPower: 9, src: "assets/images/tweety.gif"}]
-
-	/*var spongeBob = {
-
-		healthPoints: 0,
-		attackPower: 0,
-		counterAttackPower: 0
-
-
 	}
 
-	var darthVader = {
+	/*var characters = [{name: "Sponge Bob", healthPoints: 120, attackPower: 8, counterAttackPower: 10, src: "assets/images/spongeBob.jpg"}, {name: "Darth Vader", healthPoints: 100, attackPower: 10, counterAttackPower: 6, src: "assets/images/darth.jpg"}, {name: "Tigger", healthPoints: 150, attackPower: 12, counterAttackPower: 5, src: "assets/images/tigger.gif"}, {name: "Tweety", healthPoints: 180, attackPower: 9, counterAttackPower: 9, src: "assets/images/tweety.gif"}]*/
 
-		counterAttackPower: 0
-
-	}
-
-	var tigger = {
-
-
-	}
-
-	var tweety = {
-
-
-	}*/
 
 	$(document).ready(function(){
 
@@ -71,7 +44,6 @@
 			hpPara.addClass("hps text-center");
 			hpPara.text(characters[i].healthPoints);
 			newDiv.append(hpPara);
-
 		}
 
 		
@@ -96,6 +68,11 @@
 
 			}
 
+		});
+
+		$('#btnAttack').on('click', function(){
+
+			game.attack();
 		});
 
 	});
