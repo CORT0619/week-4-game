@@ -11,122 +11,9 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 
-
-	<script type="text/javascript" src="assets/javascript/game.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="assets/javascript/game.js"></script>
 
-
-	<script>
-/*
-	var game = {
-		wins: 0,
-		losses: 0,
-
-		askQuestions: function(){
-
-			
-		},
-
-		driveAroundWorld: function(){
-
-		}
-	}*/
-
-	var characters = [{name: "Sponge Bob", healthPoints: 120, attackPower: 8, counterAttackPower: 10, src: "assets/images/spongeBob.jpg"}, {name: "Darth Vader", healthPoints: 100, attackPower: 10, counterAttackPower: 6}]
-
-	/*var spongeBob = {
-
-		healthPoints: 0,
-		attackPower: 0,
-		counterAttackPower: 0
-
-
-	}
-
-	var darthVader = {
-
-		counterAttackPower: 0
-
-	}
-
-	var tigger = {
-
-
-	}
-
-	var tweety = {
-
-
-	}*/
-
-	$(document).ready(function(){
-
-		var numOfClicks = 0;
-		var newDiv;
-		var newPara;
-		var hpPara;
-		var charImg;
-
-		for(var i= 0; i < characters.length; i++){
-
-			newDiv = $("<div></div>");
-			newDiv.addClass("imgCharacters");
-			$('div#characters').append(newDiv);
-
-			newPara = $("<p></p>");
-			newPara.attr({"id": "charName",
-						  "class": "text-center"});
-			newDiv.append(newPara);
-			newPara.text(characters[i].name);
-
-			charImg = $("<img>");
-			charImg.attr({'src': characters[i].src,
-						  'alt': characters[i].name});
-			newDiv.append(charImg);
-
-
-
-			hpPara = $("<p></p>");
-			hpPara.addClass("hps text-center");
-			hpPara.text(characters[i].healthPoints);
-			newDiv.append(hpPara);
-
-		}
-
-		$('.hps').text(characters[0].healthPoints);
-
-
-
-		$('.imgCharacters').on('click', function(){
-
-			numOfClicks++;
-
-			if(numOfClicks == 1){
-
-				$('#enemies').append($('.imgCharacters'));
-				$('.imgCharacters').css('background-color', '#FF0000');
-				$(this).css({'background-color': '#FFF',
-							 'border': '2px solid green'});
-				$('#myCharacter').append($(this));
-				
-			} else if(numOfClicks == 2 && $('div#battleField .imgCharacters').data('clicked', true)){
-
-				$('#battleField').append($(this));
-				$(this).css({'background-color': '#FFF',
-							 'border': '2px solid green'});
-
-			}
-
-		});
-
-	});
-
-
-
-
-
-	
-</script>
 </head>
 <body>
 
@@ -134,7 +21,7 @@
 <div class="container">
 	<h1 class="text-center">StarWars RPG Game</h1>
 	<div id="characters">
-		<div class="imgCharacters">
+		<!--<div class="imgCharacters">
 			<p id="charName" class="text-center">Sponge Bob</p>
 			<img class="blah" src="assets/images/spongeBob.jpg" alt="Sponge Bob" id="sbob">
 			<p class="hps"></p>
@@ -156,7 +43,7 @@
 			<p id="charName" class="text-center">Tweety Bird</p>
 			<img src="assets/images/tweety.gif" id="tweety" alt="Tweety Bird">
 			<p class="hps"></p>
-		</div>
+		</div>-->
 
 	</div>
 
