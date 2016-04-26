@@ -14,17 +14,40 @@
 			var myCharLoc = $('#myCharacter p.hps').data('ind');
 			var compCharLoc = $('#battleField p.hps').data('ind');
 
-			//update player 1's health
-			characters[myCharLoc].healthPoints -= characters[compCharLoc].counterAttackPower;
-			$('p[data-ind=' + myCharLoc + ']').text(characters[myCharLoc].healthPoints);
 
-			//update computer's health
-			characters[compCharLoc].healthPoints -= characters[myCharLoc].attackPower;
-			$('p[data-ind=' + compCharLoc + ']').text(characters[compCharLoc].healthPoints);
+			if(characters[myCharLoc].healthPoints <= 0){
 
-			//print stats
-			$('p#gameStats').html("You attacked " + characters[compCharLoc].name + " for " + characters[myCharLoc].attackPower + " damage.<br />" + characters[compCharLoc].name + " attacked you back for " + characters[compCharLoc].counterAttackPower + " damage.");
+				$('p#gameStats').html("You've been defeated..GAME OVER!!");
+
+				var newBut = $("<button></button>");
+				newBut.text('Restart');
+				newBut.attr('id', 'startOver');
+				$('p#gameStats').append(newBut);
+
+			} else if(characters[compCharLoc].healthPoints <= 0){
+
+				$('p#gameStats').html("You have defeated " + characters[compCharLoc].name + ", you can choose to fight another enemy.");
+
+			} else {
+
+				//update player 1's health
+				characters[myCharLoc].healthPoints -= characters[compCharLoc].counterAttackPower;
+				$('p[data-ind=' + myCharLoc + ']').text(characters[myCharLoc].healthPoints);
+
+				//update computer's health
+				characters[compCharLoc].healthPoints -= characters[myCharLoc].attackPower;
+				$('p[data-ind=' + compCharLoc + ']').text(characters[compCharLoc].healthPoints);
+
+				//print stats
+				$('p#gameStats').html("You attacked " + characters[compCharLoc].name + " for " + characters[myCharLoc].attackPower + " damage.<br />" + characters[compCharLoc].name + " attacked you back for " + characters[compCharLoc].counterAttackPower + " damage.");
+			}
+
+
 			
+		},
+
+		restart: function(){
+
 		}
 	};
 
@@ -77,8 +100,7 @@
 							 'border': '2px solid green'});
 				$('#myCharacter').append($(this));
 
-				//game.personHPs = 
-				
+			
 			} else if($(this).parent().attr('id') == 'enemies' && $('#battleField').children("div.imgCharacters").length == 0){
 
 				$('#battleField').append($(this));
@@ -92,6 +114,11 @@
 		$('#btnAttack').on('click', function(){
 
 			game.attack();
+		});
+
+		$('startOver').on('click', function(){
+
+			game.restart();
 		});
 
 	});
