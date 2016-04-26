@@ -10,8 +10,6 @@ var compBaseAttack = characters[compCharLoc].healthPoints;*/
 
 	var game = {
 		wins: 0,
-		myBaseAttack: 0, 
-
 
 		/*myCharLoc: $('#myCharacter p.hps').data('ind'),
 		myBaseAttack: this.characters[myCharLoc].healthPoints,
@@ -23,31 +21,25 @@ var compBaseAttack = characters[compCharLoc].healthPoints;*/
 		characters: [{name: "Sponge Bob", healthPoints: 120, attackPower: 8, counterAttackPower: 10, src: "assets/images/spongeBob.jpg", index: 0}, {name: "Darth Vader", healthPoints: 100, attackPower: 10, counterAttackPower: 6, src: "assets/images/darth.jpg"}, {name: "Tigger", healthPoints: 150, attackPower: 12, counterAttackPower: 5, src: "assets/images/tigger.gif"}, {name: "Tweety", healthPoints: 180, attackPower: 9, counterAttackPower: 9, src: "assets/images/tweety.gif"}], 
 		
 
-		attack: function(personCharIndex, computerCharIndex){
+		attack: function(personCharIndex, computerCharIndex, pBaseAttack){
 
-			if(this.characters[personCharIndex].healthPoints <= 0){
+			if($('#enemies').children("div.imgCharacters").length == 0 && $('#battleField').children("div.imgCharacters").length == 0){
 
-				$('p#gameStats').html("You've been defeated..GAME OVER!!");
-
+				$('p#gameStats').html("You won!! GAME OVER!!");
 				var newBut = $("<button></button>");
 				newBut.text('Restart');
 				newBut.attr('id', 'startOver');
 				$('p#gameStats').append(newBut);
 
-			} else if(this.characters[computerCharIndex].healthPoints <= 0){
+			} else if($('#battleField').children("div.imgCharacters").length == 0){
 
-				$('p#gameStats').html("You have defeated " + this.characters[computerCharIndex].name + ", you can choose to fight another enemy.");
-
-				$('#battleField').children("div.imgCharacters").remove();
+				$('p#gameStats').html("No enemy here.");
 
 			} else {
 
 				//update player 1's health
 				this.characters[personCharIndex].healthPoints -= this.characters[computerCharIndex].counterAttackPower;
 				$('p[data-ind=' + personCharIndex + ']').text(this.characters[personCharIndex].healthPoints);
-
-				//update player 1's attackPower
-				this.characters[personCharIndex].attackPower += this.myBaseAttack;
 
 
 				//update computer's health
@@ -59,7 +51,60 @@ var compBaseAttack = characters[compCharLoc].healthPoints;*/
 
 				//print stats
 				$('p#gameStats').html("You attacked " + this.characters[computerCharIndex].name + " for " + this.characters[personCharIndex].attackPower + " damage.<br />" + this.characters[computerCharIndex].name + " attacked you back for " + this.characters[computerCharIndex].counterAttackPower + " damage.");
+
+				//update player 1's attackPower
+				this.characters[personCharIndex].attackPower += pBaseAttack;
 			}
+
+					if(this.characters[personCharIndex].healthPoints <= 0){
+
+						$('p#gameStats').html("You've been defeated..GAME OVER!!");
+
+						var newBut = $("<button></button>");
+						newBut.text('Restart');
+						newBut.attr('id', 'startOver');
+						$('p#gameStats').append(newBut);
+
+					} else if(this.characters[computerCharIndex].healthPoints <= 0){
+
+						if($('#enemies').children("div.imgCharacters").length == 0){
+
+							$('p#gameStats').html("You won!! GAME OVER!!");
+							var newBut = $("<button></button>");
+							newBut.text('Restart');
+							newBut.attr('id', 'startOver');
+							$('p#gameStats').append(newBut);
+
+
+						} else {
+
+							$('p#gameStats').html("You have defeated " + this.characters[computerCharIndex].name + ", you can choose to fight another enemy.");
+
+							$('#battleField').children("div.imgCharacters").remove();
+
+						}	
+
+					} else {
+
+						/*
+						//update player 1's health
+						this.characters[personCharIndex].healthPoints -= this.characters[computerCharIndex].counterAttackPower;
+						$('p[data-ind=' + personCharIndex + ']').text(this.characters[personCharIndex].healthPoints);
+
+
+						//update computer's health
+						this.characters[computerCharIndex].healthPoints -= this.characters[personCharIndex].attackPower;
+						$('p[data-ind=' + computerCharIndex + ']').text(this.characters[computerCharIndex].healthPoints);
+
+						//update computer's attackPower??
+
+
+						//print stats
+						$('p#gameStats').html("You attacked " + this.characters[computerCharIndex].name + " for " + this.characters[personCharIndex].attackPower + " damage.<br />" + this.characters[computerCharIndex].name + " attacked you back for " + this.characters[computerCharIndex].counterAttackPower + " damage.");
+
+						//update player 1's attackPower
+						this.characters[personCharIndex].attackPower += pBaseAttack;*/
+					}
 
 	
 		},
@@ -83,7 +128,7 @@ var compBaseAttack = characters[compCharLoc].healthPoints;*/
 		var myCharLoc;
 		var myBaseAttack;
 		var compCharLoc;
-		var compBaseAttack;
+		//var compBaseAttack;
 
 		for(var i= 0; i < game.characters.length; i++){
 
@@ -101,8 +146,6 @@ var compBaseAttack = characters[compCharLoc].healthPoints;*/
 			charImg.attr({'src': game.characters[i].src,
 						  'alt': game.characters[i].name});
 			newDiv.append(charImg);
-
-
 
 			hpPara = $("<p></p>");
 			hpPara.addClass("hps text-center");
@@ -125,8 +168,8 @@ var compBaseAttack = characters[compCharLoc].healthPoints;*/
 				$('#myCharacter').append($(this));
 
 				myCharLoc = $('#myCharacter p.hps').data('ind');
-				myBaseAttack = game.characters[myCharLoc].healthPoints;
-
+				//myBaseAttack = game.characters[myCharLoc].healthPoints;
+				myBaseAttack = game.characters[myCharLoc].attackPower;
 
 			
 			} else if($(this).parent().attr('id') == 'enemies' && $('#battleField').children("div.imgCharacters").length == 0){
@@ -135,7 +178,7 @@ var compBaseAttack = characters[compCharLoc].healthPoints;*/
 				$(this).css({'background-color': '#FFF',
 							 'border': '2px solid green'});
 				compCharLoc = $('#battleField p.hps').data('ind');
-				compBaseAttack = game.characters[compCharLoc].healthPoints;
+				//compBaseAttack = game.characters[compCharLoc].healthPoints;
 
 			}
 
@@ -143,7 +186,7 @@ var compBaseAttack = characters[compCharLoc].healthPoints;*/
 
 		$('#btnAttack').on('click', function(){
 
-			game.attack(myCharLoc, compCharLoc);
+			game.attack(myCharLoc, compCharLoc, myBaseAttack);
 		});
 
 		$('startOver').on('click', function(){
