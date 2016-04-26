@@ -1,3 +1,6 @@
+	
+	var characters = [{name: "Sponge Bob", healthPoints: 120, attackPower: 8, counterAttackPower: 10, src: "assets/images/spongeBob.jpg", index: 0}, {name: "Darth Vader", healthPoints: 100, attackPower: 10, counterAttackPower: 6, src: "assets/images/darth.jpg"}, {name: "Tigger", healthPoints: 150, attackPower: 12, counterAttackPower: 5, src: "assets/images/tigger.gif"}, {name: "Tweety", healthPoints: 180, attackPower: 9, counterAttackPower: 9, src: "assets/images/tweety.gif"}];
+	
 
 	var game = {
 		wins: 0,
@@ -8,11 +11,22 @@
 
 		attack: function(){
 			
+			var myCharLoc = $('#myCharacter p.hps').data('ind');
+			var compCharLoc = $('#battleField p.hps').data('ind');
+
+			//update player 1's health
+			characters[myCharLoc].healthPoints -= characters[compCharLoc].counterAttackPower;
+			$('p[data-ind=' + myCharLoc + ']').text(characters[myCharLoc].healthPoints);
+
+			//update computer's health
+			characters[compCharLoc].healthPoints -= characters[myCharLoc].attackPower;
+			$('p[data-ind=' + compCharLoc + ']').text(characters[compCharLoc].healthPoints);
+
+			//print stats
+			$('p#gameStats').html("You attacked " + characters[compCharLoc].name + " for " + characters[myCharLoc].attackPower + " damage.<br />" + characters[compCharLoc].name + " attacked you back for " + characters[compCharLoc].counterAttackPower + " damage.");
 			
 		}
 	};
-
-	var characters = [{name: "Sponge Bob", healthPoints: 120, attackPower: 8, counterAttackPower: 10, src: "assets/images/spongeBob.jpg"}, {name: "Darth Vader", healthPoints: 100, attackPower: 10, counterAttackPower: 6, src: "assets/images/darth.jpg"}, {name: "Tigger", healthPoints: 150, attackPower: 12, counterAttackPower: 5, src: "assets/images/tigger.gif"}, {name: "Tweety", healthPoints: 180, attackPower: 9, counterAttackPower: 9, src: "assets/images/tweety.gif"}];
 
 
 	$(document).ready(function(){
@@ -44,6 +58,7 @@
 
 			hpPara = $("<p></p>");
 			hpPara.addClass("hps text-center");
+			hpPara.attr('data-ind', i);
 			hpPara.text(characters[i].healthPoints);
 			newDiv.append(hpPara);
 		}
@@ -62,7 +77,7 @@
 							 'border': '2px solid green'});
 				$('#myCharacter').append($(this));
 
-				game.personHPs = 
+				//game.personHPs = 
 				
 			} else if($(this).parent().attr('id') == 'enemies' && $('#battleField').children("div.imgCharacters").length == 0){
 
