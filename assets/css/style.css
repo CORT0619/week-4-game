@@ -1,4 +1,6 @@
-body {font-family: 'Courier';}
+body {font-family: 'Courier';
+	  background-image: url('../images/starwarsback.jpg');
+	  color: #FFD700;}
 
 h1 {font-family: 'Russo One', sans-serif;}
 
@@ -20,7 +22,7 @@ img {width: 105px;
 				margin-bottom: 10px;
 				text-align: center;}
 
-.hiddenChars {display: none;}
+.hidden {display: none;}
 
 
 #charName {margin-top: 0;
@@ -30,4 +32,8 @@ img {width: 105px;
 .backCol {background-color: '#ffff00';}
 
 #gameStats {clear: both;
-			font-weight: bold;}		   				
+			font-weight: bold;}	
+
+.startOver {clear: both;}	
+
+div#characters {overflow: auto;}			   				
